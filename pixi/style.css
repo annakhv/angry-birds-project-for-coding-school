@@ -1,0 +1,13 @@
+body {
+    background-color: lightyellow;
+}
+
+canvas{
+
+    background-color: lightblue;
+    align-self: center;
+}
+
+.center{
+    text-align: center;
+}

@@ -4,12 +4,17 @@
   <meta charset="utf-8">
   <title>Hello World</title>
 </head>
-<script src="pixi/pixi.min.js"></script>
-<body>
-  <script type="text/javascript">
-    let app = new PIXI.Application({width: 256, height: 256});
-    document.body.appendChild(app.view);
 
-  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.0.0/pixi.min.js"></script>
+
+<link rel="stylesheet" href="pixi/style.css">
+
+<meta charset="UTF-8">
+<body onload="init();">
+  <div class="center">
+    <canvas id="game-canvas" width="1000" height="600"></canvas>
+  </div>
+  <script src="pixi/script.js"></script>
+  <script src="pixi.js-master/bin/pixi.dev.js"></script>
 </body>
 </html>
