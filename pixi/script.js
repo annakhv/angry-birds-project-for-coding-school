@@ -16,11 +16,11 @@ var SCALE=30;
 var stage, world;
 
 function init() {
-stage=new createjs.Stage(document.getElementById("game-canvas"));
+var canvas=document.getElementById("game-canvas");
+document.getElementById("game-canvas").style.background = "url('./resources/colored_land.png')"; //set up background image
+stage=new createjs.Stage(canvas);
 setupPhyisics();
-
 setupObjects();
-
 createjs.Ticker.addEventListener("tick", tick);
 
 
@@ -34,10 +34,10 @@ function setupPhyisics() {
     fix.friction=0.5;
     var ground=new box2d.b2BodyDef(); // setting up ground
     ground.type=box2d.b2Body.b2_staticBody;
-    ground.position.x=1200/SCALE;
-    ground.position.y=600/SCALE;
+    ground.position.x=2200/SCALE;
+    ground.position.y=630/SCALE;
     fix.shape=new box2d.b2PolygonShape();
-    fix.shape.SetAsBox(1200/SCALE, 10/SCALE);
+    fix.shape.SetAsBox(2200/SCALE, 10/SCALE);
     world.CreateBody(ground).CreateFixture(fix);
 
     var debugDraw=new box2d.b2DebugDraw();
@@ -51,6 +51,7 @@ function setupPhyisics() {
 
 function setupObjects() {
     setupBirds()
+    setupWeapon()
     setupConstruction()
     setupAliens()
    
@@ -62,19 +63,22 @@ function setupBirds() {
         stage.addChild(birdObj.view);
        }
 
-
 }
 
+function setupWeapon() {
+   var weapon=new constructionElement(240/SCALE, 400/SCALE, 35, 70, 35, 70, "resources/weapon.png");
+    stage.addChild(weapon.view);
+}
 function setupConstruction() {
-       for(let i=1100; i>520; i-=145){ //we have to leave space for aliens 
+       for(let i=2100; i>1520; i-=145){ //we have to leave space for aliens 
        var construction=new constructionElement(i/SCALE, 400/SCALE, 35, 110, 35, 110, "resources/elementWood019.png");
         stage.addChild(construction.view);
        }
-      for(let i=1030; i>600; i-=290){
+      for(let i=2030; i>1600; i-=290){
        var construction=new constructionElement(i/SCALE, 120/SCALE, 110, 35, 110, 35, "resources/elementWood012.png");
         stage.addChild(construction.view);
       } 
-       for(let i=1030; i>600; i-=290){
+       for(let i=2030; i>1600; i-=290){
        var construction=new constructionElement(i/SCALE, 60/SCALE, 110, 70, 110, 70, "resources/elementWood034.png");
         stage.addChild(construction.view);
       } 
@@ -85,18 +89,12 @@ function setupConstruction() {
 
 function setupAliens() {
      
-       for(let i=1030; i>600; i-=321){ // this will be changed when i elaborate on general logic
+       for(let i=2030; i>1600; i-=321){ // this will be changed when i elaborate on general logic
         var alienObj=new alien(i/SCALE, 300/SCALE);
         stage.addChild(alienObj.view);
        }
 
 }
-
-
-
-
-
-
 
 
 

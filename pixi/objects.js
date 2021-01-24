@@ -74,8 +74,6 @@ window.constructionElement=constructionElement;
 })(window);
 
 
-
-
 function alienIcon() {
 listColor=["Beige", "Blue", "Green", "Pink", "Yellow"];
 listShape=["round", "square","suit"];
