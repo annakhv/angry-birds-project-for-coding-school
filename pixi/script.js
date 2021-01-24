@@ -30,7 +30,7 @@ createjs.Ticker.addEventListener("tick", tick);
 function setupPhyisics() {
     world=new box2d.b2World(new box2d.b2Vec2(0,30), true);
     var fix=new box2d.b2FixtureDef();
-    fix.density=10;
+    fix.density=40;
     fix.friction=0.5;
     var ground=new box2d.b2BodyDef(); // setting up ground
     ground.type=box2d.b2Body.b2_staticBody;
@@ -50,18 +50,55 @@ function setupPhyisics() {
 
 
 function setupObjects() {
-    i =30;
-    while (i > 0){
-        i--;
-       var angryBird=new bird();
-        stage.addChild(angryBird.view); 
-        var Alien=new alien();
-        stage.addChild(Alien.view); 
-    }
-    
-
-  
+    setupBirds()
+    setupConstruction()
+    setupAliens()
+   
 }
+
+function setupBirds() {
+ for(let i=200; i>50; i-=50){ 
+       var birdObj=new bird(i/SCALE, 400/SCALE)
+        stage.addChild(birdObj.view);
+       }
+
+
+}
+
+function setupConstruction() {
+       for(let i=1100; i>520; i-=145){ //we have to leave space for aliens 
+       var construction=new constructionElement(i/SCALE, 400/SCALE, 35, 110, 35, 110, "resources/elementWood019.png");
+        stage.addChild(construction.view);
+       }
+      for(let i=1030; i>600; i-=290){
+       var construction=new constructionElement(i/SCALE, 120/SCALE, 110, 35, 110, 35, "resources/elementWood012.png");
+        stage.addChild(construction.view);
+      } 
+       for(let i=1030; i>600; i-=290){
+       var construction=new constructionElement(i/SCALE, 60/SCALE, 110, 70, 110, 70, "resources/elementWood034.png");
+        stage.addChild(construction.view);
+      } 
+
+}
+
+
+
+function setupAliens() {
+     
+       for(let i=1030; i>600; i-=321){ // this will be changed when i elaborate on general logic
+        var alienObj=new alien(i/SCALE, 300/SCALE);
+        stage.addChild(alienObj.view);
+       }
+
+}
+
+
+
+
+
+
+
+
 
 function tick() {
 stage.update();
